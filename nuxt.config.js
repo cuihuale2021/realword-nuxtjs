@@ -68,6 +68,7 @@ module.exports = {
     // 运行环境相关
     server: {
         host: '0.0.0.0',               // 默认 localhost 本地访问   对外访问 '0.0.0.0'
+        // host: 'localhost',
         port: 3000,             // 默认3000
     } 
 }
