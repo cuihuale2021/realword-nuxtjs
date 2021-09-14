@@ -15,9 +15,9 @@
 
 3.  报错： 10054
 
-   ```
-   git config --global http.sslVerify "false"
-   ```
+      ```
+      git config --global http.sslVerify "false"
+      ```
 
    
 
