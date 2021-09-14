@@ -28,7 +28,7 @@ export const actions = {
             try {
                 user = JSON.parse(parsed.user)
             } catch (e) {
-                // ...
+                console.dir(e, 'actions-error')
             }
             commit('setUser', user)
         }
