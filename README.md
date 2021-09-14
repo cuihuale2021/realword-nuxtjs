@@ -7,10 +7,7 @@
 
    ```
    // 查看端口号占用
-   netstat -anp|grep 3000
-   
-   // 确定进程号
-   ps -aux| grep <进程号>
+   lsof -i:3000
    
    // 杀掉该进程
    kill -9 <pid>
