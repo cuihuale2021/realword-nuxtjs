@@ -16,4 +16,10 @@
    kill -9 <pid>
    ```
 
-3.  git config --global hht.sslVerify "false"
+3.  报错： 10054
+
+   ```
+   git config --global hht.sslVerify "false"
+   ```
+
+   
