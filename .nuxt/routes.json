@@ -6,46 +6,38 @@
       {
         "path": "",
         "name": "home",
-        "component": "E:\\\\lagou\\\\realworld\\\\pages\\\\home",
-        "_name": "_12b1ebfc"
+        "component": "E:\\\\lagou\\\\realworld\\\\pages\\\\home"
       },
       {
         "path": "/login",
         "name": "login",
-        "component": "E:\\\\lagou\\\\realworld\\\\pages\\\\login",
-        "_name": "_43c3dbec"
+        "component": "E:\\\\lagou\\\\realworld\\\\pages\\\\login"
       },
       {
         "path": "/register",
         "name": "register",
-        "component": "E:\\\\lagou\\\\realworld\\\\pages\\\\login",
-        "_name": "_43c3dbec"
+        "component": "E:\\\\lagou\\\\realworld\\\\pages\\\\login"
       },
       {
         "path": "/profile/:username",
         "name": "profile",
-        "component": "E:\\\\lagou\\\\realworld\\\\pages\\\\profile",
-        "_name": "_3b63616c"
+        "component": "E:\\\\lagou\\\\realworld\\\\pages\\\\profile"
       },
       {
         "path": "/settings",
         "name": "settings",
-        "component": "E:\\\\lagou\\\\realworld\\\\pages\\\\settings",
-        "_name": "_7b6e4680"
+        "component": "E:\\\\lagou\\\\realworld\\\\pages\\\\settings"
       },
       {
         "path": "/editor",
         "name": "editor",
-        "component": "E:\\\\lagou\\\\realworld\\\\pages\\\\editor",
-        "_name": "_282bc54a"
+        "component": "E:\\\\lagou\\\\realworld\\\\pages\\\\editor"
       },
       {
         "path": "/article/:slug",
         "name": "article",
-        "component": "E:\\\\lagou\\\\realworld\\\\pages\\\\article",
-        "_name": "_222da4b9"
+        "component": "E:\\\\lagou\\\\realworld\\\\pages\\\\article"
       }
-    ],
-    "_name": "_33fa9f07"
+    ]
   }
 ]
