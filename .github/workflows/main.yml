@@ -52,9 +52,9 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
-        script: 
+        script: |
           cd /root/realworld-nuxtjs
           wget https://github.com/cuihuale2021/realworld-nuxtjs/releases/latest/download/release.tgz -O release.tgz
           tar zxvf release.tgz
-          npm install --production
+          yarn --production
           pm2 reload pm2.config.json

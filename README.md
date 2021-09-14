@@ -16,4 +16,4 @@
    kill -9 <pid>
    ```
 
-   
+3.  git config --global hht.sslVerify "false"
