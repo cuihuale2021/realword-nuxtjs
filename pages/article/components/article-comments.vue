@@ -2,11 +2,11 @@
   <div>
     <form class="card comment-form">
       <div class="card-block">
-        <textarea class="form-control" placeholder="Write a comment..." rows="3"></textarea>
+        <textarea v-model="comment.body" class="form-control" placeholder="Write a comment..." rows="3"></textarea>
       </div>
       <div class="card-footer">
-        <img src class="comment-author-img" />
-        <button class="btn btn-sm btn-primary">Post Comment</button>
+        <img :src="user.image" class="comment-author-img" />
+        <button class="btn btn-sm btn-primary" @click.prevent="postComment">Post Comment</button>
       </div>
     </form>
 
@@ -46,7 +46,9 @@
 </template>
 
 <script>
-import { getComments } from "@/api/article";
+import { getComments, addComments } from "@/api/article";
+import { mapState } from 'vuex'
+
 export default {
   name: "ArticleComments",
   props: {
@@ -57,13 +59,27 @@ export default {
   },
   data() {
     return {
-      comments: []
+      comments: [],
+      comment: {
+        body: ''
+      }
     };
   },
   async mounted() {
     // 不需要SEO， 放到mounted中即可
     const { data } = await getComments(this.article.slug);
+    // console.log(data, 'comments')
     this.comments = data.comments;
+  },
+  computed:{
+    ...mapState(['user'])
+  },
+  methods: {
+    async postComment(){
+      // addComments 接口暂不可用
+      const res = await addComments(this.article.slug, { 'comment': this.comment.body })
+      // console.log(res)
+    }
   }
 };
 </script>

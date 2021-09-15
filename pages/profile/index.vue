@@ -28,56 +28,65 @@
             <div class="articles-toggle">
               <ul class="nav nav-pills outline-active">
                 <li class="nav-item">
-                  <a class="nav-link active" href>My Articles</a>
+                  <nuxt-link exact :to="{
+                    name: 'profile',
+                    params:{
+                      username: profile.username
+                    },
+                  }" class="nav-link active">My Articles</nuxt-link>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href>Favorited Articles</a>
-                </li>
+                <!-- <li class="nav-item">
+                  <nuxt-link exact :to="{
+                    name: 'profile',
+                    params:{
+                      username: profile.username
+                    },
+                    query: {
+                      tab: 'favorited_articles'
+                    }
+                  }" class="nav-link" :class="{active: tab === 'favorited_articles'}">Favorited Articles</nuxt-link>
+                </li> -->
               </ul>
             </div>
 
-            <div class="article-preview">
+            <div class="article-preview" v-for="article in articles" :key="article.slug">
               <div class="article-meta">
-                <a href>
-                  <img src />
-                </a>
+                <nuxt-link
+                  :to="{
+                  name: 'profile',
+                  params: {
+                    username: article.author.username
+                  }
+                }"
+                >
+                  <img :src="article.author.image" />
+                </nuxt-link>
                 <div class="info">
-                  <a href class="author">Eric Simons</a>
-                  <span class="date">January 20th</span>
+                  <nuxt-link
+                    :to="{
+                  name: 'profile',
+                  params: {
+                    username: article.author.username
+                  }
+                }"
+                    class="author"
+                  >{{ article.author.username}}</nuxt-link>
+                  <span class="date">{{ article.createdAt | date('MMM DD, YYYY')}}</span>
                 </div>
                 <button class="btn btn-outline-primary btn-sm pull-xs-right">
-                  <i class="ion-heart"></i> 29
+                  <i class="ion-heart"></i>
+                  {{ article.favoritesCount }}
                 </button>
               </div>
-              <a href class="preview-link">
-                <h1>How to build webapps that scale</h1>
-                <p>This is the description for the post.</p>
-                <span>Read more...</span>
-              </a>
-            </div>
-
-            <div class="article-preview">
-              <div class="article-meta">
-                <a href>
-                  <img src="http://i.imgur.com/N4VcUeJ.jpg" />
-                </a>
-                <div class="info">
-                  <a href class="author">Albert Pai</a>
-                  <span class="date">January 20th</span>
-                </div>
-                <button class="btn btn-outline-primary btn-sm pull-xs-right">
-                  <i class="ion-heart"></i> 32
-                </button>
-              </div>
-              <a href class="preview-link">
-                <h1>The song you won't ever stop singing. No matter how hard you try.</h1>
-                <p>This is the description for the post.</p>
-                <span>Read more...</span>
-                <ul class="tag-list">
-                  <li class="tag-default tag-pill tag-outline">Music</li>
-                  <li class="tag-default tag-pill tag-outline">Song</li>
-                </ul>
-              </a>
+              <nuxt-link
+                :to="{
+                name: 'article',
+                params: {
+                  slug: article.slug
+                }
+              }"
+                class="preview-link"
+              >{{ article.description }}</nuxt-link>
             </div>
           </div>
         </div>
@@ -88,6 +97,7 @@
 
 <script>
 import { getProfile, followUser, unFollowUser } from "@/api/profile";
+import { getArticles } from "@/api/article";
 
 export default {
   name: "ProfileIndex",
@@ -99,14 +109,21 @@ export default {
         image: "",
         bio: "new code coming soon...",
         following: false
-      }
+      },
+      articles: [],
+      // tab: ""
     };
   },
   async mounted() {
     const username = this.$route.params.username;
     // 获取用户信息，自己的文章列表，喜欢的文章列表
-    const { data } = await getProfile(username);
-    this.profile = data.profile;
+    const [userData, articleData] = await Promise.all([
+      getProfile(username),
+      getArticles({ params: { author: username } })
+    ]);
+    this.profile = userData.data.profile;
+    this.articles = articleData.data.articles;
+    // console.log(this.articles);
   },
 
   methods: {

@@ -84,7 +84,7 @@
                 <button
                   class="btn btn-outline-primary btn-sm pull-xs-right"
                   :class="{ active: article.favorited }"
-                  @click="onFavorite(article)"
+                  @click.prevent="onFavorite(article)"
                   :disabled="article.favoriteDisabled"
                 >
                   <i class="ion-heart"></i>
@@ -224,6 +224,7 @@ export default {
   },
   methods: {
     async onFavorite(article) {
+      console.log(article.slug, 'article.slug')
       // console.log(article)
       // 防抖，请求期间按钮禁用
       article.favoriteDisabled = true;
