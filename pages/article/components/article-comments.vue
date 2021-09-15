@@ -64,7 +64,6 @@ export default {
     // 不需要SEO， 放到mounted中即可
     const { data } = await getComments(this.article.slug);
     this.comments = data.comments;
-    console.log(this.comments, "this.comments");
   }
 };
 </script>

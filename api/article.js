@@ -61,3 +61,20 @@ export const createArticle = data => {
         data
     })
 }
+
+// 删除文章
+export const deleteArticle = slug => {
+    return request({
+        method: 'DELETE',
+        url: `/articles/${slug}`
+    })
+}
+
+// 修改文章
+export const updateArticle = data => {
+    return request({
+        method: 'PUT',
+        url: `/articles/${data.article.slug}`,
+        data
+    })
+}

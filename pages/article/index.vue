@@ -43,7 +43,7 @@ export default {
   // 数据
   async asyncData({ params }) {
     const { data } = await getArticle(params.slug);
-    console.log(data, 'article')
+    // console.log(data, 'article')
     const { article } = data;
     const md = new MarkdownIt();
     article.body = md.render(article.body);

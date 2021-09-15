@@ -103,9 +103,9 @@ export default {
     };
   },
   async mounted() {
-    const params = this.$route.params;
-    const { data } = await getProfile(params);
-    // console.log(data)
+    const username = this.$route.params.username;
+    // 获取用户信息，自己的文章列表，喜欢的文章列表
+    const { data } = await getProfile(username);
     this.profile = data.profile;
   },
 

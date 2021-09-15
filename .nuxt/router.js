@@ -10,6 +10,7 @@ const _43c3dbec = () => interopDefault(import('..\\pages\\login' /* webpackChunk
 const _3b63616c = () => interopDefault(import('..\\pages\\profile' /* webpackChunkName: "" */))
 const _7b6e4680 = () => interopDefault(import('..\\pages\\settings' /* webpackChunkName: "" */))
 const _282bc54a = () => interopDefault(import('..\\pages\\editor' /* webpackChunkName: "" */))
+const _5a725f1b = () => interopDefault(import('..\\pages\\editor\\detail' /* webpackChunkName: "" */))
 const _222da4b9 = () => interopDefault(import('..\\pages\\article' /* webpackChunkName: "" */))
 
 const emptyFn = () => {}
@@ -50,6 +51,10 @@ export const routerOptions = {
       path: "/editor",
       component: _282bc54a,
       name: "editor"
+    }, {
+      path: "/editor/:slug",
+      component: _5a725f1b,
+      name: "detail"
     }, {
       path: "/article/:slug",
       component: _222da4b9,

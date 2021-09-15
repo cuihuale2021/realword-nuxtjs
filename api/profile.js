@@ -4,10 +4,10 @@ import {
 } from '@/plugins/request'
 
 // 获取个人信息
-export const getProfile = params => {
+export const getProfile = username => {
     return request({
         method: 'GET',
-        url: `/profiles/${params.username}`,
+        url: `/profiles/${username}`,
     })
 }
 
