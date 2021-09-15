@@ -61,6 +61,9 @@ export default {
   name: "LayoutIndex",
   computed: {
     ...mapState(["user"])
+  },
+  methods: {
+
   }
 };
 </script>

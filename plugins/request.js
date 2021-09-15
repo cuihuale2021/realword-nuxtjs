@@ -3,7 +3,7 @@ import axios from 'axios'
 // 创建请求对象
 export const request = axios.create({
     // baseURL: 'https://conduit.productionready.io/api',
-    baseURL: 'http://realworld.api.fed.lagounews.com/api'
+    baseURL: 'http://realworld.api.fed.lagounews.com/api'                   // 备用接口
 })
 
 // 插件导出函数，必须作为默认成员

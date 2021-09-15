@@ -91,6 +91,7 @@ export default {
         const { data } = this.isLogin
           ? await login({ user: this.user })
           : await register({ user: this.user });
+          // console.log(data, 'data')
         // 保存用户的登录状态
         this.$store.commit("setUser", data.user);
         // 为了防止刷新页面vuex数据丢失,将数据存入 Cookie, 【数据持久化】

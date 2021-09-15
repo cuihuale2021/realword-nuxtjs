@@ -197,6 +197,7 @@ export default {
       await getTags()
     ]);
     const { articles, articlesCount } = articleRes.data;
+    // console.log(articles, 'articles')
     const { tags } = tagRes.data;
     // 点赞按钮防抖
     articles.forEach(article => (article.favoriteDisabled = false));

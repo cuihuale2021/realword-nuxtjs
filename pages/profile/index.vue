@@ -5,13 +5,17 @@
         <div class="container">
           <div class="row">
             <div class="col-xs-12 col-md-10 offset-md-1">
-              <img src class="user-img" />
-              <h4>Eric Simons</h4>
-              <p>Cofounder @GoThinkster, lived in Aol's HQ for a few months, kinda looks like Peeta from the Hunger Games</p>
-              <button class="btn btn-sm btn-outline-secondary action-btn">
-                <i class="ion-plus-round"></i>
+              <img :src="profile.image" class="user-img" />
+              <h4>{{ profile.username }}</h4>
+              <p>{{ profile.bio }}</p>
+              <button
+                class="btn btn-sm"
+                :class="[ profile.following ? 'btn-primary' : 'btn-outline-secondary' ]"
+                @click="onFollow(profile)"
+              >
+                <i :class="[profile.following ? 'ion-minus-round' : 'ion-plus-round']"></i>
                 &nbsp;
-                Follow Eric Simons
+                Follow {{ profile.username }}
               </button>
             </div>
           </div>
@@ -83,9 +87,41 @@
 </template>
 
 <script>
+import { getProfile, followUser, unFollowUser } from "@/api/profile";
+
 export default {
   name: "ProfileIndex",
-  middleware: "authenticated"
+  middleware: "authenticated",
+  data() {
+    return {
+      profile: {
+        username: "",
+        image: "",
+        bio: "new code coming soon...",
+        following: false
+      }
+    };
+  },
+  async mounted() {
+    const params = this.$route.params;
+    const { data } = await getProfile(params);
+    // console.log(data)
+    this.profile = data.profile;
+  },
+
+  methods: {
+    async onFollow(profile) {
+      if (profile.following) {
+        // 已经关注过
+        await unFollowUser(profile.username);
+        this.profile.following = false;
+      } else {
+        //未关注过
+        await followUser(profile.username);
+        this.profile.following = true;
+      }
+    }
+  }
 };
 </script>
 
